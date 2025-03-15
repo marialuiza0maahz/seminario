@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predição de Doenças</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; background-color: #ffe6f2; }
+        .container { 
+            max-width: 500px; 
+            margin: auto; 
+            padding: 20px; 
+            border: 2px solid #ff66b2; 
+            border-radius: 10px; 
+            background-color: #ffb3d9; 
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        button { 
+            margin-top: 10px; 
+            padding: 10px; 
+            background-color: #ff66b2; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e60073;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Predição de Doenças</h2>
+        <p>Selecione os sintomas abaixo:</p>
+        <label><input type="checkbox" class="sintoma" value="febre"> Febre</label><br>
+        <label><input type="checkbox" class="sintoma" value="tosse"> Tosse</label><br>
+        <label><input type="checkbox" class="sintoma" value="fadiga"> Fadiga</label><br>
+        <label><input type="checkbox" class="sintoma" value="dor_de_cabeca"> Dor de Cabeça</label><br>
+        <button onclick="preverDoenca()">Prever Doença</button>
+        <h3 id="resultado"></h3>
+    </div>
+
+    <script>
+        function preverDoenca() {
+            let sintomasSelecionados = [];
+            document.querySelectorAll('.sintoma:checked').forEach(checkbox => {
+                sintomasSelecionados.push(checkbox.value);
+            });
+            
+            let doenca = "Desconhecida";
+            if (sintomasSelecionados.includes("febre") && sintomasSelecionados.includes("tosse")) {
+                doenca = "Gripe";
+            } else if (sintomasSelecionados.includes("fadiga") && sintomasSelecionados.includes("dor_de_cabeca")) {
+                doenca = "Estresse";
+            }
+            
+            document.getElementById("resultado").innerText = "Doença prevista: " + doenca;
+        }
+    </script>
+</body>
+</html>
